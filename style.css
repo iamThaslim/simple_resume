@@ -17,12 +17,28 @@ body {
     line-height: 1.5;
 }
 
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
 img {
     max-width: 100%;
     display: block;
 }
 .main-grid{
+  --_aside-width: clamp(7.5rem, 20vw, 15rem);
+  --_main-width: 1fr;
+  --_gap-size: 10vw;
+
     display: grid;
+    grid-template-columns: var(--_aside-width) var(--_main-width);
+    gap: var(--_gap-size);
     grid-auto-flow: dense;
     align-items: center;
     min-height: 100vh;
@@ -32,6 +48,7 @@ img {
 main {
     padding-block: 2rem;
     grid-column: 2;
+    width: calc(100vw - var(--_gap-size) - var(--_aside-width));
 }
 
 aside {
@@ -89,4 +106,80 @@ aside {
     content: "";
     width: 50px;
     background: transparent;
+  }
+
+  .job {
+    width: 28.5rem;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    background: hsla(229, 47%, 17%, 1);
+  }
+
+  .job * {
+    margin: 0;
+  }
+
+  .job:first-child::before {
+    content: "Current role";
+    position: absolute;
+    color: hsla(147, 93%, 43%, 1);
+    top: 0rem;
+    left: 0;
+  }
+  
+  .year {
+    color: hsla(147, 93%, 43%, 1);
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+  }
+  
+  .job-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 1rem;
+  }
+  
+  .role {
+    font-size: 1.75rem;
+    line-height: 1.2;
+  }
+  
+  .company {
+    color: hsla(229, 21%, 53%, 1);
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+  
+  .icon-list {
+    height: 100%;
+    border-left: 1px solid  hsla(229, 36%, 39%, 1);
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: grid;
+    align-content: center;
+    gap: 3rem;
+  }
+  
+  .icon-list > li {
+    position: relative;
+    padding-left: 2rem;
+  }
+  
+  .icon-list > li::after {
+    --_size: 0.5rem;
+  
+    content: "";
+    position: absolute;
+    top: 0.5rem;
+    left: 0;
+    width: var(--_size);
+    transform: translateX(-50%);
+    aspect-ratio: 1;
+    outline: 0.5rem solid hsla(230, 50%, 58%, 0.3);
+    border-radius: 50%;
+    background: hsla(0, 0%, 100%, 1);
   }
